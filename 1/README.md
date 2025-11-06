@@ -1,7 +1,7 @@
 # NVIDIA Clara の概要
 
 NVIDIA Clara は、NVIDIA が提供している医療やマテリアルのための AI プラットフォーム。
-現時点で、以下の領域のための機能を提供している
+現時点で、以下の分野のための機能を提供している
 
 - NVIDIA Clara for Biopharma（AI 創薬）
 

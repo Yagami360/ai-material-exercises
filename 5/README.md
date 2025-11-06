@@ -1,4 +1,4 @@
-# BioNeMo Framework をインストールする
+# BioNeMo Framework を使用して AI 創薬モデル（ESM-2）の学習を行う
 
 ## 方法
 
@@ -29,6 +29,7 @@
 1. 各種環境変数を設定する
 
     ```bash
+    # BioNeMo Framework で共通の環境変数
     export NGC_CLI_API_KEY='dummy'  # NGC の API キー
     export WANDB_API_KEY='dummy'    # wandb の API キー
     ...
@@ -94,23 +95,43 @@
         /bin/bash
         ```
 
-1. （オプション）独自に作成した学習スクリプトでモデルの学習を行う
+1. AI 創薬モデル（ESM-2）の学習を行う
 
-    独自に作成した学習スクリプト `training.py` を実行したい場合は、以下のコマンドで実行可能
+    コンテナ内にて、以下のコマンドを実行する
 
     ```bash
-    docker run --rm -it --gpus all \
-        -e NGC_CLI_API_KEY \
-        -e WANDB_API_KEY \
-        -v $LOCAL_DATA_PATH:$DOCKER_DATA_PATH \
-        -v $LOCAL_MODELS_PATH:$DOCKER_MODELS_PATH \
-        -v $LOCAL_RESULTS_PATH:$DOCKER_RESULTS_PATH \
-        nvcr.io/nvidia/clara/bionemo-framework:2.7 \
-        python $DOCKER_RESULTS_PATH/training.py --option1 --option2 --output=$DOCKER_RESULTS_PATH
+    # ESM-2 用の環境変数
+    export MY_DATA_SOURCE="ngc"
+
+    # The fastest transformer engine environment variables in testing were the following two
+    TEST_DATA_DIR=$(download_bionemo_data esm2/testdata_esm2_pretrain:2.0 --source $MY_DATA_SOURCE); \
+    ESM2_650M_CKPT=$(download_bionemo_data esm2/650m:2.0 --source $MY_DATA_SOURCE); \
+
+    train_esm2 \
+        --train-cluster-path ${TEST_DATA_DIR}/2024_03_sanity/train_clusters_sanity.parquet \
+        --train-database-path ${TEST_DATA_DIR}/2024_03_sanity/train_sanity.db \
+        --valid-cluster-path ${TEST_DATA_DIR}/2024_03_sanity/valid_clusters.parquet \
+        --valid-database-path ${TEST_DATA_DIR}/2024_03_sanity/validation.db \
+        --result-dir ./results \
+        --experiment-name test_experiment \
+        --num-gpus 1 \
+        --num-nodes 1 \
+        --val-check-interval 10 \
+        --num-dataset-workers 1 \
+        --num-steps 10 \
+        --max-seq-length 1024 \
+        --limit-val-batches 2 \
+        --micro-batch-size 2 \
+        --restore-from-checkpoint-path ${ESM2_650M_CKPT}
     ```
+
+    > GPU メモリとして、xxx GB 程度必要
+
+    > `train_esm2 --help` コマンドで各種引数の意味を確認可能
+
+    > `train_esm2` コマンドの実装は、https://github.com/NVIDIA/bionemo-framework/blob/main/sub-packages/bionemo-esm2/src/bionemo/esm2/scripts/train_esm2.py に存在する
 
 ## 参考サイト
 
-- https://docs.nvidia.com/bionemo-framework/latest/main/getting-started/access-startup/
+- https://docs.nvidia.com/bionemo-framework/latest/main/getting-started/training-models/
 - https://github.com/NVIDIA/bionemo-framework
-- https://note.com/wandb_jp/n/nb54160daf871
