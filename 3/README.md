@@ -17,15 +17,15 @@ https://build.nvidia.com/nvidia/protein-binder-design-for-drug-discovery
 
 - RFdiffusion
 
-    <img width="300" alt="Image" src="https://github.com/user-attachments/assets/968cd6e2-8896-4f7a-9173-6a46a8458651" />
+    <img width="500" alt="Image" src="https://github.com/user-attachments/assets/968cd6e2-8896-4f7a-9173-6a46a8458651" />
 
-    <img width="300" alt="Image" src="https://github.com/user-attachments/assets/45554ab6-61da-480c-85b4-c59685587335" />
+    <img width="500" alt="Image" src="https://github.com/user-attachments/assets/45554ab6-61da-480c-85b4-c59685587335" />
 
 - ProteinMPNN
 
-    <img width="300" alt="Image" src="https://github.com/user-attachments/assets/03a522f6-efca-4794-aa0e-bb64bc56a56f" />
+    <img width="500" alt="Image" src="https://github.com/user-attachments/assets/03a522f6-efca-4794-aa0e-bb64bc56a56f" />
 
-    <img width="300" alt="Image" src="https://github.com/user-attachments/assets/13a2fd76-eaae-4a4f-82fd-f36ad3e7fba4" />
+    <img width="500" alt="Image" src="https://github.com/user-attachments/assets/13a2fd76-eaae-4a4f-82fd-f36ad3e7fba4" />
 
 - AlphaFold2
 
@@ -89,16 +89,16 @@ https://build.nvidia.com/nvidia/protein-binder-design-for-drug-discovery
 
 - 上記 json データを 3D レンダリングした結果
     
-    <img width="300" alt="Image" src="https://github.com/user-attachments/assets/72540891-e03a-40d2-96dc-6513b7e9ee28" />
+    <img width="500" alt="Image" src="https://github.com/user-attachments/assets/72540891-e03a-40d2-96dc-6513b7e9ee28" />
 
 - RFdiffusion
 
-    <img width="300" alt="Image" src="https://github.com/user-attachments/assets/9eacd37d-9a35-4707-8028-4561a8568c82" />
+    <img width="500" alt="Image" src="https://github.com/user-attachments/assets/9eacd37d-9a35-4707-8028-4561a8568c82" />
 
 - ProteinMPNN
 
-    <img width="300" alt="Image" src="https://github.com/user-attachments/assets/43fb9ec5-83a2-4869-ba49-04a5550e6660" />
+    <img width="500" alt="Image" src="https://github.com/user-attachments/assets/43fb9ec5-83a2-4869-ba49-04a5550e6660" />
 
 - AlphaFold2
 
-    <img width="300" alt="Image" src="https://github.com/user-attachments/assets/3c92ddeb-fd25-4993-9a4e-74cef1a80cf6" />
+    <img width="500" alt="Image" src="https://github.com/user-attachments/assets/3c92ddeb-fd25-4993-9a4e-74cef1a80cf6" />

@@ -96,19 +96,19 @@ BioNeMo と呼ばれるフレームワークと AI 創薬のための事前学�
 
         薬は、タンパク質の形にぴったりはまるような薬の分子がくっついて、タンパク質の働き方を変えることで病気を治す。もしくは、タンパク質が医薬品そのものである
 
-        <img width="300" alt="Image" src="https://github.com/user-attachments/assets/abf58456-7784-4e7a-861c-a058be90e420" />
+        <img width="500" alt="Image" src="https://github.com/user-attachments/assets/abf58456-7784-4e7a-861c-a058be90e420" />
         
     - 薬がタンパク質に作用する仕組み
 
-        <img width="300" alt="Image" src="https://github.com/user-attachments/assets/3f8e7a0b-de4b-45a9-98fa-10c123b37274" />
+        <img width="500" alt="Image" src="https://github.com/user-attachments/assets/3f8e7a0b-de4b-45a9-98fa-10c123b37274" />
 
     - 日常的な薬とタンパク質
 
-        <img width="300" alt="Image" src="https://github.com/user-attachments/assets/eff20196-c537-4b98-834a-295c3593f864" />
+        <img width="500" alt="Image" src="https://github.com/user-attachments/assets/eff20196-c537-4b98-834a-295c3593f864" />
 
     - タンパク質構造の重要性
 
-        <img width="300" alt="Image" src="https://github.com/user-attachments/assets/3b50d5eb-ebb8-4218-9a95-47aac60449ea" />
+        <img width="500" alt="Image" src="https://github.com/user-attachments/assets/3b50d5eb-ebb8-4218-9a95-47aac60449ea" />
 
 - AI創薬の必要性
 
