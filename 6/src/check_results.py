@@ -1,4 +1,5 @@
 import torch
+from bionemo.esm2.data.tokenizer import get_tokenizer
 
 work_dir = "../results"
 results = torch.load(f"{work_dir}/predictions__rank_0__dp_rank_0.pt")
@@ -12,8 +13,6 @@ logits = results["token_logits"].transpose(0, 1)  # s, b, h  -> b, s, h
 print(f"Logits shape: {logits.shape}")
 
 #
-from bionemo.esm2.data.tokenizer import get_tokenizer
-
 tokenizer = get_tokenizer()
 
 tokens = tokenizer.all_tokens
