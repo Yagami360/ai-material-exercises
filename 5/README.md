@@ -4,6 +4,11 @@
 
 1. GPU インスタンスを構築する
 
+    > V100 だと以下のエラーが発生する
+    > ```bash
+    > [rank0]: RuntimeError: CUDA error: no kernel image is available for execution on the device
+    > ```
+
 1. NVIDIA NGC にログインし、API キーを作成する
 
     https://ngc.nvidia.com/signin
