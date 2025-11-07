@@ -1,42 +1,34 @@
-import os
-import glob
+import torch
 
-work_dir = "../"
-results_dir = os.path.join(work_dir, "results")
+work_dir = "../results"
+results = torch.load(f"{work_dir}/predictions__rank_0__dp_rank_0.pt")
 
-# DDPによって作成されたファイルは、通常、複数の結果ファイルが存在するため、globを使用します。
-# num_gpus=1 の場合、一つのファイルのみが存在します。
-import glob
-results_files = glob.glob(os.path.join(results_dir, "*.npy"))
-print("Generated files:")
-for f in results_files:
-    print(f" - {f}")
+for key, val in results.items():
+    if val is not None:
+        print(f"{key}\t{val.shape}")
 
-# 出力例:
-# Generated files:
-#  - /workspace/bionemo2/results/embeddings_rank_0.npy
-#  - /workspace/bionemo2/results/hiddens_rank_0.npy
-#  - /workspace/bionemo2/results/logits_rank_0.npy
-
-
-# ------------------------------------------------------------
-# 結果ファイルをNumPy配列としてロードし、その形状を確認できます。
-# ------------------------------------------------------------
-import numpy as np
-
-# 埋め込み
-embeddings = np.load(os.path.join(results_dir, "embeddings_rank_0.npy"))
-print(f"Embeddings shape: {embeddings.shape}")
-
-# 隠れ状態
-hiddens = np.load(os.path.join(results_dir, "hiddens_rank_0.npy"))
-print(f"Hiddens shape: {hiddens.shape}")
-
-# ロジット
-logits = np.load(os.path.join(results_dir, "logits_rank_0.npy"))
+#
+logits = results["token_logits"].transpose(0, 1)  # s, b, h  -> b, s, h
 print(f"Logits shape: {logits.shape}")
 
-# 出力例:
-# Embeddings shape: (10, 1280)
-# Hiddens shape: (10, 62, 1280)
-# Logits shape: (10, 62, 33)
+#
+from bionemo.esm2.data.tokenizer import get_tokenizer
+
+tokenizer = get_tokenizer()
+
+tokens = tokenizer.all_tokens
+print(f"There are {tokenizer.vocab_size} unique tokens: {tokens}.")
+
+aa_logits = logits[..., : tokenizer.vocab_size]  # filter out the 95 paddings and only keep 33 vocab positions
+print(f"Logits shape after removing the paddings in hidden dimension: {aa_logits.shape}")
+
+#
+aa_tokens = ["L", "A", "G", "V", "S", "E", "R", "T", "I", "D", "P", "K", "Q", "N", "F", "Y", "M", "H", "W", "C"]
+
+aa_indices = [i for i, token in enumerate(tokens) if token in aa_tokens]
+extra_indices = [i for i, token in enumerate(tokens) if token not in aa_tokens]
+
+#
+input_ids = results["input_ids"]  # b, s
+# mask where non-amino acid tokens are True
+mask = torch.isin(input_ids, torch.tensor(extra_indices))

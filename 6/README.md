@@ -133,13 +133,13 @@
         --checkpoint-path /root/.cache/bionemo/0798767e843e3d54315aef91934d28ae7d8e93c2849d5fcfbdf5fac242013997-esm2_650M_nemo2.tar.gz.untar \
         --data-path ./datasets/sequences.csv \
         --results-path ./results \
-        --config-class ESM2Config \
-        --include-embeddings \
-        --include-hiddens \
-        --include-logits \
-        --micro-batch-size 2 \
+        --micro-batch-size 3 \
         --num-gpus 1 \
-        --num-nodes 1
+        --precision "bf16-mixed" \
+        --include-hiddens \
+        --include-embeddings \
+        --include-logits \
+        --include-input-ids
     ```
     ```bash
     ...
@@ -174,21 +174,27 @@
     python check_results.py
     ```
 
+    ```bash
+    token_logits    torch.Size([1024, 10, 128])
+    hidden_states   torch.Size([10, 1024, 1280])
+    embeddings      torch.Size([10, 1280])
+    ```
+
     形状の説明:
 
     - Embeddings shape: (10, 1280):
 
-        - 10 は入力シーケンスの数です（10行）。
+        - 10 は入力シーケンスの数（10行）。
 
-        - 1280 は、ESM-2 650Mモデルの埋め込みベクトルの次元数です。これは、シーケンス全体から平均化された単一のベクトル表現です。
+        - 1280 は、ESM-2 650Mモデルの埋め込みベクトルの次元数。これは、シーケンス全体から平均化された単一のベクトル表現。
 
     - Hiddens shape: (10, 62, 1280):
 
-        - 10 は入力シーケンスの数です。
+        - 10 は入力シーケンスの数。
 
-        - 62 は、最長のシーケンス長（60）に加えて、先頭のCLSトークンと末尾のEOSトークンの合計である62トークンです。
+        - 62 は、最長のシーケンス長（60）に加えて、先頭のCLSトークンと末尾のEOSトークンの合計である62トークン。
 
-        - 1280 は、各トークンの隠れ状態の次元数です。
+        - 1280 は、各トークンの隠れ状態の次元数。
 
     - Logits shape: (10, 62, 33):
 
