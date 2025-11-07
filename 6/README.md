@@ -175,32 +175,19 @@
     ```
 
     ```bash
-    token_logits    torch.Size([1024, 10, 128])
-    hidden_states   torch.Size([10, 1024, 1280])
-    embeddings      torch.Size([10, 1280])
+    token_logits    torch.Size([1024, 10, 128])     # トークンの予測スコア（配列長, バッチ, 隠れ層）
+    hidden_states   torch.Size([10, 1024, 1280])    # 内部表現（バッチ, 配列長, 埋め込み次元）
+    input_ids       torch.Size([10, 1024])          # 入力トークンID（バッチ, 配列長）
+    embeddings      torch.Size([10, 1280])          # 配列全体の埋め込みベクトル（バッチ, 埋め込み次元）
     ```
 
-    形状の説明:
+    `token_logits` が最終出力。最後の次元の 128 内の、**最初の33位置がアミノ酸語彙**に対応し、その後に95個のパディングが続く
 
-    - Embeddings shape: (10, 1280):
+    ```bash
+    There are 33 unique tokens: ['<cls>', '<pad>', '<eos>', '<unk>', 'L', 'A', 'G', 'V', 'S', 'E', 'R', 'T', 'I', 'D', 'P', 'K', 'Q', 'N', 'F', 'Y', 'M', 'H', 'W', 'C', 'X', 'B', 'U', 'Z', 'O', '.', '-', '<null_1>', '<mask>'].
+    ```
 
-        - 10 は入力シーケンスの数（10行）。
-
-        - 1280 は、ESM-2 650Mモデルの埋め込みベクトルの次元数。これは、シーケンス全体から平均化された単一のベクトル表現。
-
-    - Hiddens shape: (10, 62, 1280):
-
-        - 10 は入力シーケンスの数。
-
-        - 62 は、最長のシーケンス長（60）に加えて、先頭のCLSトークンと末尾のEOSトークンの合計である62トークン。
-
-        - 1280 は、各トークンの隠れ状態の次元数。
-
-    - Logits shape: (10, 62, 33):
-
-        - 10 と 62 は隠れ状態と同じ意味です。
-
-        - 33 は、ESM-2モデルの語彙サイズです（20の標準アミノ酸、パディング、マスク、不明、特殊トークンを含む）。
+    <img width="548" height="144" alt="Image" src="https://github.com/user-attachments/assets/ede5f2ae-9455-4954-81ea-3a2a3b66414d" />
 
 ## 参考サイト
 
