@@ -11,6 +11,8 @@ AI 創薬 / AI マテリアル分野のモデルやフレームワークの練�
     - [NVIDIA BioNeMo の blueprint デモからAI創薬における入出力データを理解する](3/)
     - [BioNeMo Framework をインストールする](4/)
     - [BioNeMo Framework を使用して AI 創薬モデル（ESM-2）の学習を行う](5/)
-    - [BioNeMo Framework を使用して AI 創薬モデル（ESM-2）の推論を行う](6/)
+    - [[In-progress] BioNeMo Framework を使用して AI 創薬モデル（ESM-2）の推論を行う](6/)
 
 - NVIDIA Clara for Medical Imaging（AI 医療用画像診断）
+    - [[In-progress] NVIDIA Clara for Medical Imaging の概要](7/)
+    - [[In-progress] MONAI Toolkit を使用して xxx](8/)

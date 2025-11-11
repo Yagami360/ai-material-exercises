@@ -189,6 +189,8 @@
 
     <img width="600" alt="Image" src="https://github.com/user-attachments/assets/ede5f2ae-9455-4954-81ea-3a2a3b66414d" />
 
+    > [TODO] この出力データの意味は？
+
 ## 参考サイト
 
 - https://docs.nvidia.com/bionemo-framework/latest/main/examples/bionemo-esm2/inference/
