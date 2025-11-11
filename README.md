@@ -15,4 +15,5 @@ AI 創薬 / AI マテリアル分野のモデルやフレームワークの練�
 
 - NVIDIA Clara for Medical Imaging（AI 医療用画像診断）
     - [[In-progress] NVIDIA Clara for Medical Imaging の概要](7/)
-    - [[In-progress] MONAI Toolkit を使用して xxx](8/)
+    - [MONAI Toolkit を起動する](8/)
+    - [MONAI Toolkit での内蔵セグメンテーション用モデル（VISTA-3D）を使用して、CT画像における特定の内蔵領域をアノテーションする（ファインチューニング+推論）](9/)
